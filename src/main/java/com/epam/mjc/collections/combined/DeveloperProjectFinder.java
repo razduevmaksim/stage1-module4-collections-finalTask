@@ -4,20 +4,21 @@ import java.util.*;
 
 public class DeveloperProjectFinder {
     public List<String> findDeveloperProject(Map<String, Set<String>> projects, String developer) {
-        List<String> project = new ArrayList<>();
+        List<String> developerProjects = new ArrayList<>();
 
-        for (Map.Entry<String, Set<String>> pair : projects.entrySet()) {
+        for (Map.Entry<String, Set<String>> projectEntry : projects.entrySet()) {
 
-            for (String s : pair.getValue()) {
-                if (Objects.equals(developer, s)) {
-                    project.add(pair.getKey());
+            for (String projectDeveloper : projectEntry.getValue()) {
+                if (Objects.equals(developer, projectDeveloper)) {
+                    developerProjects.add(projectEntry.getKey());
                 }
             }
         }
 
-        project.sort(Comparator.comparingInt(String::length).reversed()
+        developerProjects.sort(Comparator.comparingInt(String::length).reversed()
                 .thenComparing(Comparator.reverseOrder()));
 
-        return project;
+        return developerProjects;
     }
+
 }

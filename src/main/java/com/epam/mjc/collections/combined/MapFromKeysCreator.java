@@ -9,20 +9,21 @@ public class MapFromKeysCreator {
     public Map<Integer, Set<String>> createMap(Map<String, Integer> sourceMap) {
         Map<Integer, Set<String>> lengthMap = new HashMap<>();
 
-        for (Map.Entry<String, Integer> pair : sourceMap.entrySet()) {
-            Set<String> numbers = new HashSet<>();
+        for (Map.Entry<String, Integer> entry : sourceMap.entrySet()) {
+            Set<String> wordsOfSameLength = new HashSet<>();
 
-            var l = pair.getKey().length();
+            int wordLength = entry.getKey().length();
 
-            for (Map.Entry<String, Integer> pair2 : sourceMap.entrySet()) {
-                if (pair2.getKey().length() == l) {
-                    numbers.add(pair2.getKey());
+            for (Map.Entry<String, Integer> innerEntry : sourceMap.entrySet()) {
+                if (innerEntry.getKey().length() == wordLength) {
+                    wordsOfSameLength.add(innerEntry.getKey());
                 }
             }
 
-            lengthMap.put(l, numbers);
+            lengthMap.put(wordLength, wordsOfSameLength);
         }
 
         return lengthMap;
     }
+
 }
